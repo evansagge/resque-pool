@@ -240,7 +240,7 @@ module Resque
           wpid or break
           worker = delete_worker(wpid)
           # TODO: close any file descriptors connected to worker, if any
-          log "Reaped resque worker[#{status.pid}] (status: #{status.exitstatus}) queues: #{worker.queues.join(",")}"
+          log "Reaped resque worker[#{status.pid}] (status: #{status.exitstatus}) queues: #{worker ? worker.queues.join(",") : nil}"
         end
       rescue Errno::ECHILD, QuitNowException
       end
